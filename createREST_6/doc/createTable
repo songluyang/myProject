@@ -1,0 +1,86 @@
+create table taco_Ingredient (
+id varchar(8) not null,
+name varchar(25) not null,
+type varchar(10) not null,
+primary key(id)
+); 
+
+create table taco_Taco (
+id varchar(8) not null,
+name varchar(50) not null,
+createdAt timestamp not null,
+primary key(id)
+);
+
+create table taco_Taco_Ingredients (
+taco varchar(8) not null,
+ingredient varchar(4) not null
+);
+
+alter table taco_Taco_Ingredients add foreign key (taco) references taco_Taco(id); 
+alter table taco_Taco_Ingredients add foreign key (ingredient) references taco_Ingredient(id);
+
+create table taco_Taco_Order (
+id varchar(8) not null,
+Name varchar(50) not null,
+Street varchar(50) not null, 
+City varchar(50) not null, 
+State varchar(2) not null, 
+Zip varchar(10) not null, 
+ccNumber varchar(16) not null,
+ccExpiration varchar(5) not null, 
+ccCVV varchar(3) not null, 
+createdAt timestamp not null,
+primary key(id)
+);
+
+create table taco_Taco_Order_Tacos (
+tacoOrder varchar(8) not null, 
+taco varchar(8) not null); 
+
+alter table taco_Taco_Order_Tacos add foreign key (tacoOrder) references taco_Taco_Order(id); 
+alter table taco_Taco_Order_Tacos add foreign key (taco) references taco_Taco(id);
+
+create sequence seq_tacoId
+increment by 1
+start with 1
+maxvalue 999999999;
+
+insert into taco_Ingredient (id, name, type) values ('FLTO', 'Flour Tortilla', 'WRAP');
+insert into taco_Ingredient (id, name, type) values ('COTO', 'Corn Tortilla', 'WRAP');
+insert into taco_Ingredient (id, name, type) values ('GRBF', 'Ground Beef', 'PROTEIN');
+insert into taco_Ingredient (id, name, type) values ('CARN', 'Carnitas', 'PROTEIN');
+insert into taco_Ingredient (id, name, type) values ('TMTO', 'Diced Tomatoes', 'VEGGIES');
+insert into taco_Ingredient (id, name, type) values ('LETC', 'Lettuce', 'VEGGIES');
+insert into taco_Ingredient (id, name, type) values ('CHED', 'Cheddar', 'CHEESE');
+insert into taco_Ingredient (id, name, type) values ('JACK', 'Monterrey Jack', 'CHEESE');
+insert into taco_Ingredient (id, name, type) values ('SLSA', 'Salsa', 'SAUCE');
+insert into taco_Ingredient (id, name, type) values ('SRCR', 'Sour Cream', 'SAUCE');
+
+--taco_taco_order表加用户列
+alter table taco_taco_order add owner varchar2(20)
+
+create table taco_user (
+id varchar(8) not null,
+username varchar(50) not null,
+password varchar(100) not null, 
+fullname varchar(50), 
+street varchar(20), 
+city varchar(20), 
+state varchar(20),
+zip varchar(20), 
+phone_Number varchar(20),
+primary key(id)
+);
+
+--权限
+create table AUTHORITIES(
+  userid  VARCHAR2(20) not null,
+  AUTHORITY VARCHAR2(50) not null,
+  primary key(userid)
+);
+
+alter table AUTHORITIES add foreign key (userid) references taco_user(id); 
+
+
+

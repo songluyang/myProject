@@ -1,0 +1,29 @@
+#<?xml version="1.0" encoding="UTF-8"?>
+
+#server:
+#  port: 9090
+
+#spring:
+#  datasource:
+#    url:jdbc:oracle:thin:localhost:1521/orcl
+#    username: c##abc
+#    password: 123
+#    driverClassName : oracle.jdbc.driver.OracleDriver
+
+#数据库连接
+#spring: 
+#  datasource: 
+#    url : oracle:thin :localhost:1521/orcl
+#    username: c##abc
+#    password: 123
+#    driverClassName : oracle.jdbc.driver.OracleDriver
+   
+#修改日志级别 
+#logging: 
+#  level: 
+#     root: WARN 
+#     org: 
+#       springframework: 
+#         security: DEBUG
+         
+         
